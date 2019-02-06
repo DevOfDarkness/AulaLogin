@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Curso;
 
 class CursoController extends Controller
 {
@@ -92,7 +93,7 @@ class CursoController extends Controller
     public function update(Request $request, $id)
     {
         //encontra o id desejado
-        $curso = Curso::find($request->id);
+        $curso = Curso::find($id);
 
         //alteras os dados quando aplicável
         if($request->nome) {
@@ -132,8 +133,8 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        Curso::destroy($request->id);
+        Curso::destroy($id);
 
-        return resonse()->json(['message' => 'Instância deletada com sucesso']);
+        return response()->json(['message' => 'Instância deletada com sucesso']);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Professor;
 
 class ProfessorController extends Controller
 {
@@ -14,9 +15,9 @@ class ProfessorController extends Controller
     public function index()
     {
       //pega todas as instâncias do objeto
-      $Professores = Professor::all();
+      $professores = Professor::all();
 
-      return response()->json([$Professores]);
+      return response()->json([$professores]);
     }
 
     /**
@@ -38,20 +39,20 @@ class ProfessorController extends Controller
     public function store(Request $request)
     {
         //cria uma nova instância
-        $Professor = new Professor;
+        $professor = new Professor;
 
         //passa os dados do argumento para instância
-        $Professor->nome = $request->nome;
-        $Professor->cpf = $request->cpf;
-        $Professor->email = $request->email;
-        $Professor->pagina = $request->pagina;
-        $Professor->telefone = $request->telefone;
-        $Professor->idDepartamento = $request->idDepartamento;
+        $professor->nome = $request->nome;
+        $professor->cpf = $request->cpf;
+        $professor->email = $request->email;
+        $professor->pagina = $request->pagina;
+        $professor->telefone = $request->telefone;
+        $professor->idDepartamento = $request->idDepartamento;
 
         //salva
-        $Professor->save();
+        $professor->save();
 
-        return response()->json([$Professor]);
+        return response()->json([$professor]);
 
     }
 
@@ -64,9 +65,9 @@ class ProfessorController extends Controller
     public function show($id)
     {
         //encontra a instância desejada e atribui
-        $Professor = Professor::find($id);
+        $professor = Professor::find($id);
 
-        return response()->json([$Professor]);
+        return response()->json([$professor]);
 
     }
 
@@ -91,32 +92,32 @@ class ProfessorController extends Controller
     public function update(Request $request, $id)
     {
         //encontra o id desejado
-        $Professor = Professor::find($request->id);
+        $professor = Professor::find($id);
 
         //alteras os dados quando aplicável
         if($request->nome) {
-          $Professor->nome = $request->nome;
+          $professor->nome = $request->nome;
         }
         if($request->cpf) {
-          $Professor->cpf = $request->cpf;
+          $professor->cpf = $request->cpf;
         }
         if($request->email) {
-          $Professor->email = $request->email;
+          $professor->email = $request->email;
         }
         if($request->pagina) {
-          $Professor->pagina = $request->pagina;
+          $professor->pagina = $request->pagina;
         }
         if($request->telefone) {
-          $Professor->telefone = $request->telefone;
+          $professor->telefone = $request->telefone;
         }
         if($request->idDepartamento) {
-          $Professor->idDepartamento = $request->idDepartamento;
+          $professor->idDepartamento = $request->idDepartamento;
         }
 
         //salva
-        $Professor->save();
+        $professor->save();
 
-        return response()->json([$Professor]);
+        return response()->json([$professor]);
 
     }
 
@@ -128,8 +129,8 @@ class ProfessorController extends Controller
      */
     public function destroy($id)
     {
-        Professor::destroy($request->id);
+        Professor::destroy($id);
 
-        return resonse()->json(['message' => 'Instância deletada com sucesso']);
+        return response()->json(['message' => 'Instância deletada com sucesso']);
     }
 }

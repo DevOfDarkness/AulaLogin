@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Departamento;
 
 class DepartamentoController extends Controller
 {
@@ -14,7 +15,7 @@ class DepartamentoController extends Controller
     public function index()
     {
       //pega todas as instâncias do objeto
-      $Departamentos = Departamento::all();
+      $departamentos = Departamento::all();
 
       return response()->json([$departamentos]);
     }
@@ -90,7 +91,7 @@ class DepartamentoController extends Controller
     public function update(Request $request, $id)
     {
         //encontra o id desejado
-        $departamento = Departamento::find($request->id);
+        $departamento = Departamento::find($id);
 
         //alteras os dados quando aplicável
         if($request->nome) {
@@ -124,8 +125,8 @@ class DepartamentoController extends Controller
      */
     public function destroy($id)
     {
-        Departamento::destroy($request->id);
+        Departamento::destroy($id);
 
-        return resonse()->json(['message' => 'Instância deletada com sucesso']);
+        return response()->json(['message' => 'Instância deletada com sucesso']);
     }
 }

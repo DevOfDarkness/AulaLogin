@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Aluno;
 
 class AlunoController extends Controller
 {
@@ -94,7 +95,7 @@ class AlunoController extends Controller
     public function update(Request $request, $id)
     {
         //encontra o id desejado
-        $aluno = Aluno::find($request->id);
+        $aluno = Aluno::find($id);
 
         //alteras os dados quando aplicável
         if($request->nome) {
@@ -140,8 +141,8 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        Aluno::destroy($request->id);
+        Aluno::destroy($id);
 
-        return resonse()->json(['message' => 'Instância deletada com sucesso']);
+        return response()->json(['message' => 'Instância deletada com sucesso']);
     }
 }
