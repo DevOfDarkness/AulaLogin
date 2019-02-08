@@ -24,3 +24,10 @@ Route::resources([
   'curso' => 'CursoController',
   'departamento' => 'DepartamentoController'
 ]);
+Route::post('login', 'API\PassportController@login');
+Route::post('register', 'API\PassportController@register');
+
+Route::group(['middleware'=> 'auth:api'], function(){
+  Route::get('logout', 'API\PassportController@logout');
+  Route::get('get-details', 'API\PassportController@getDetails');
+});

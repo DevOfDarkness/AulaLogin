@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CursoRequest;
 use Illuminate\Http\Request;
 use App\Curso;
 
@@ -36,7 +37,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursoRequest $request)
     {
         //cria uma nova instância
         $curso = new Curso;
@@ -90,7 +91,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CursoRequest $request, $id)
     {
         //encontra o id desejado
         $curso = Curso::find($id);
